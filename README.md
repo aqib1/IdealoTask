@@ -32,3 +32,5 @@ placement of the toy robot.
 - Any move that would cause the robot to fall must be ignored.
 - It is not required to provide any graphical output showing the movement of the toy
 robot. 
+Deliverables: 
+- the whole project, example requests to test a robot-application in form of PostmanCollection or in form of a text file.
