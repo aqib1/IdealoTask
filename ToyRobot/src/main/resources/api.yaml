@@ -86,7 +86,27 @@ paths:
             application/json:
               schema:
                 type: object
-                $ref: '#/components/schemas/ToyRobotSimulationResponse'         
+                $ref: '#/components/schemas/ToyRobotSimulationResponse'
+ 
+  # DELETE method is used in /toyrobot/{id} API, this API is going to delete the toy robot against id and
+  # from that id if robot not found it will throw bad request
+    
+    delete:
+      tags:
+      - Toy robot simulation
+      summary: delete the robot againt the given id
+      operationId: deleteToyRobotSimulation
+      parameters:
+      - in: path
+        name: id
+        description: id for toy robot
+        required: true
+        schema:
+          type : string
+      responses:
+        200:
+          description: Success
+                
 components:
   schemas:
     ToyRobotCreationRequest:
