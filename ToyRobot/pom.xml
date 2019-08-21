@@ -149,7 +149,7 @@
 							<generateModelDocumentation>false</generateModelDocumentation>
 							<generateModelTests>false</generateModelTests>
 							<generateSupportingFiles>false</generateSupportingFiles>
-							<modelPackage>com.example.client</modelPackage>
+							<modelPackage>com.example.model</modelPackage>
 							<configOptions>
 								<dateLibrary>java8</dateLibrary>
 								<sourceFolder>swagger</sourceFolder>

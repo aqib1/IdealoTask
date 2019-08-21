@@ -1,4 +1,4 @@
-package com.idealo.toyrobot.controllers.advices;
+package com.idealo.toyrobot.controller.advices;
 
 import java.util.Optional;
 

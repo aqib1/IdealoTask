@@ -121,7 +121,7 @@ components:
       properties:
         simulationType:
           type: object
-          $ref: '#/components/schemas/SimulationTypes'
+          $ref: '#/components/schemas/Simulations'
     ToyRobotSimulationResponse:
       properties:
         xPosition:
@@ -131,18 +131,21 @@ components:
         cardinalDirection:
           type: object
           $ref: '#/components/schemas/CardinalDirections'
-    SimulationTypes:
+    Simulations:
       type: string
       enum:
-      - MOVE
       - LEFT
       - RIGHT
-      - REPORT
     CardinalDirections:
       type: string
       enum:
-      - PLACE
       - NORTH
       - EAST
       - SOUTH
       - WEST
+    IOOperations:
+      type: string
+      enum:   
+      - MOVE
+      - REPORT
+      - PLACE

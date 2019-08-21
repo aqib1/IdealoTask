@@ -3,10 +3,9 @@ package com.idealo.toyrobot.business;
 import java.util.Objects;
 
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.PathVariable;
 
-import com.example.client.ToyRobotCreationRequest;
-import com.example.client.ToyRobotCreationResponse;
+import com.example.model.ToyRobotCreationRequest;
+import com.example.model.ToyRobotCreationResponse;
 import com.idealo.toyrobot.exceptions.InvalidRequestException;
 
 @Component
