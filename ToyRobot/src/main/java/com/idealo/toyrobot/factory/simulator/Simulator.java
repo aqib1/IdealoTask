@@ -1,6 +1,6 @@
 package com.idealo.toyrobot.factory.simulator;
 
-import com.idealo.toyrobot.entities.models.ToyRobot;
+import com.idealo.toyrobot.models.ToyRobot;
 
 public interface Simulator {
 

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
+import com.idealo.toyrobot.exceptions.CordsOutOfBoundException;
 import com.idealo.toyrobot.exceptions.InvalidParamException;
 import com.idealo.toyrobot.exceptions.InvalidRequestException;
 
@@ -25,6 +26,13 @@ public class ToyRobotSimulationExceptionHandler {
 	public ResponseEntity<Object> handleInvalidParamException(RuntimeException e, WebRequest wr) {
 		String error = Optional.of(e.getMessage()).orElse(e.getClass().getName())
 				+ "\n[Invalid param! => (InvalidParamException)]";
+		return new ResponseEntity<>(error, HttpStatus.EXPECTATION_FAILED);
+	}
+	
+	@ExceptionHandler(value = { CordsOutOfBoundException.class })
+	public ResponseEntity<Object> handleCordsOutOfBoundException(RuntimeException e, WebRequest wr) {
+		String error = Optional.of(e.getMessage()).orElse(e.getClass().getName())
+				+ "\n[coordinates out of bounds! => (CordsOutOfBoundException)]";
 		return new ResponseEntity<>(error, HttpStatus.EXPECTATION_FAILED);
 	}
 	

@@ -1,8 +1,8 @@
 package com.idealo.toyrobot.factory.simulator.types;
 
 import com.example.model.CardinalDirections;
-import com.idealo.toyrobot.entities.models.ToyRobot;
 import com.idealo.toyrobot.factory.simulator.Simulator;
+import com.idealo.toyrobot.models.ToyRobot;
 
 public class LeftSimulation implements Simulator{
 
