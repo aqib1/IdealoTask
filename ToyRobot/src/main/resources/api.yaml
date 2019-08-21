@@ -1,0 +1,128 @@
+openapi: 3.0.0
+info:
+  description: API for music catalog services
+  version: 1.0.0
+  title: Toy Robot Simulation Application
+tags:
+- name: toyRobotSimulator
+  description: Simulator application for a toy robot
+paths:
+  
+  # POST method is used in /toyrobot API, this API is going to recieve the request object
+  # with initial positions of robot as well as cardinal, it will going to intialize robot with the given
+  # position, in the result API is going to send a new UUID for robot each time which show its
+  # non idempotent nature.  
+
+  /toyrobot:
+    post:
+      tags:
+      - Toy robot simulation
+      summary: Create toyrobot on provided positions of the table top
+      operationId: createToyRobot
+      requestBody:
+        description: request body required for creation of robot which accpet robot initial position
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ToyRobotCreationRequest'
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/ToyRobotCreationResponse'
+       
+  /toyrobot/{id}:
+  
+  # PUT method is used in /toyrobot/{id} API, this API is going to recieve the request object with
+  # simulation details which is going to update the direction of robot on the table, as it will not
+  # going to return a new response every time, this show its idempotent nature   
+  
+    put:
+      tags:
+      - Toy robot simulation
+      summary: Simulate toyrobot on provided directions on the table top
+      operationId: simulateToyRobot
+      parameters:
+      - in: path
+        name: id
+        description: id for toy robot
+        required: true
+        schema:
+          type : string
+      requestBody:
+        description: request body required for simulate the robot which recieve simutaion types
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ToyRobotSimulationRequest'
+      responses:
+        200:
+          description: Success
+          
+  # GET method is used in /toyrobot/{id} API, this API is going to recieve the toy robot id and
+  # from that id and URL we are going to receive the latest path or direction of robot
+          
+    get:
+      tags:
+      - Toy robot simulation
+      summary: Get the latest direction of toy robot simulation
+      operationId: getToyRobotSimulation
+      parameters:
+      - in: path
+        name: id
+        description: id for toy robot
+        required: true
+        schema:
+          type : string
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/ToyRobotSimulationResponse'         
+components:
+  schemas:
+    ToyRobotCreationRequest:
+      properties:
+        commandType:
+          type: string
+    ToyRobotCreationResponse:
+      properties:
+        toyRobotId:
+          type: string
+    ToyRobotSimulationRequest:
+      properties:
+        simulationType:
+          type: object
+          $ref: '#/components/schemas/SimulationTypes'
+    ToyRobotSimulationResponse:
+      properties:
+        xPosition:
+          type: integer
+        yPosition:
+          type: integer
+        cardinalDirection:
+          type: object
+          $ref: '#/components/schemas/CardinalDirections'
+    SimulationTypes:
+      type: string
+      enum:
+      - MOVE
+      - LEFT
+      - RIGHT
+      - REPORT
+    CardinalDirections:
+      type: string
+      enum:
+      - PLACE
+      - NORTH
+      - EAST
+      - SOUTH
+      - WEST
