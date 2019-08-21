@@ -1,13 +1,11 @@
-package com.idealo.toyrobot.entities.models;
+package com.idealo.toyrobot.models;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
-import com.idealo.toyrobot.entities.models.helper.ToyRobotSimulator;
 
 public class ToyRobot {
 
-	private int id;
 	private String uuid;
 	private String robotName;
 	private String createdAt;
@@ -19,20 +17,10 @@ public class ToyRobot {
 
 	public ToyRobot(int id, String uuid, String robotName, String createdAt) {
 		super();
-		this.id = id;
 		this.uuid = uuid;
 		this.robotName = robotName;
 		this.createdAt = createdAt;
 		this.toyRobotSimulator = new ToyRobotSimulator();
-	}
-
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getUuid() {
@@ -65,7 +53,7 @@ public class ToyRobot {
 
 	@Override
 	public String toString() {
-		return "ToyRobot [id=" + id + ", uuid=" + uuid + ", robotName=" + robotName + ", createdAt=" + createdAt + "]";
+		return "ToyRobot [uuid=" + uuid + ", robotName=" + robotName + ", createdAt=" + createdAt + "]";
 	}
 	
 }

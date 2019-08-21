@@ -111,8 +111,10 @@ components:
   schemas:
     ToyRobotCreationRequest:
       properties:
-        commandType:
+        placeCommand:
           type: string
+        robotName:
+          type: string 
     ToyRobotCreationResponse:
       properties:
         toyRobotId:

@@ -1,4 +1,4 @@
-package com.idealo.toyrobot.entities.models.helper;
+package com.idealo.toyrobot.models;
 
 import com.example.model.CardinalDirections;
 import com.idealo.toyrobot.utils.Constants;
