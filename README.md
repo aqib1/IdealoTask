@@ -1,6 +1,6 @@
 # IdealoTask
 These are the details regarding tasks. First task will be following below.
-# Task 1
+# Task 2
 
 Code problem details:
 - The application is a simulation of a toy robot moving on a square tabletop, of
