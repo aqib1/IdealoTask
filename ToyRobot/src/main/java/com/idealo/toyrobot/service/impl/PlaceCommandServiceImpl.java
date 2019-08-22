@@ -18,7 +18,7 @@ public class PlaceCommandServiceImpl implements PlaceCommandService {
 		String cmmd = request.getPlaceCommand();
 
 		if (!cmmd.matches(Constants.PLACE_COMMAND_REGEX)) {
-			throw new InvalidRequestException("\nRequest place command, does not contain place keyword.");
+			throw new InvalidRequestException("\nRequest place command, does not contain valid format.");
 		} else {
 			try {
 				setPlaceDataToToyRobot(cmmd, toyRobot);
