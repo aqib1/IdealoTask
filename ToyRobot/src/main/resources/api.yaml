@@ -1,10 +1,10 @@
 openapi: 3.0.0
 info:
-  description: API for music catalog services
+  description: API for toy robot simulation
   version: 1.0.0
   title: Toy Robot Simulation Application
 tags:
-- name: toyRobotSimulator
+- name: Robot Creation Api
   description: Simulator application for a toy robot
 paths:
   
@@ -16,7 +16,7 @@ paths:
   /toyrobot:
     get:
       tags:
-      - Toy robot simulation
+      - Robot Creation
       summary: get all robots currently stored in the data set
       operationId: getAllRobots
       responses:
@@ -27,11 +27,11 @@ paths:
               schema:
                 type: array
                 items:
-                  type: string
+                  type: object
                 
     post:
       tags:
-      - Toy robot simulation
+      - Robot Creation
       summary: Create toyrobot on provided positions of the table top
       operationId: createToyRobot
       requestBody:
@@ -58,7 +58,7 @@ paths:
   
     put:
       tags:
-      - Toy robot simulation
+      - Robot Creation
       summary: Simulate toyrobot on provided directions on the table top
       operationId: simulateToyRobot
       parameters:
@@ -84,7 +84,7 @@ paths:
           
     get:
       tags:
-      - Toy robot simulation
+      - Robot Creation
       summary: Get the latest direction of toy robot simulation
       operationId: getToyRobotSimulation
       parameters:
@@ -108,7 +108,7 @@ paths:
     
     delete:
       tags:
-      - Toy robot simulation
+      - Robot Creation
       summary: delete the robot againt the given id
       operationId: deleteToyRobotSimulation
       parameters:
@@ -121,6 +121,8 @@ paths:
       responses:
         200:
           description: Success
+
+         
                 
 components:
   schemas:
