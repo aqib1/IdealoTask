@@ -7,17 +7,17 @@ import com.example.model.RobotRequestDto;
 import com.idealo.toyrobot.exceptions.CordsOutOfBoundException;
 import com.idealo.toyrobot.exceptions.InvalidRequestException;
 import com.idealo.toyrobot.models.Robot;
-import com.idealo.toyrobot.service.PlaceService;
+import com.idealo.toyrobot.service.PlaceCommandService;
 import com.idealo.toyrobot.utils.Constants;
 
 @Service
-public class PlaceServiceImpl implements PlaceService {
+public class PlaceCommandServiceImpl implements PlaceCommandService {
 
-	public Robot IOPlaceExecutor(RobotRequestDto request) {
+	public Robot IOPlaceCommandExecutor(RobotRequestDto request) {
 		Robot toyRobot = getToyRobotByRequest(request);
 		String cmmd = request.getPlaceCommand();
 
-		if (!cmmd.contains(Constants.PLACE_COMMAND_PREFIX)) {
+		if (!cmmd.matches(Constants.PLACE_COMMAND_REGEX)) {
 			throw new InvalidRequestException("\nRequest place command, does not contain place keyword.");
 		} else {
 			try {

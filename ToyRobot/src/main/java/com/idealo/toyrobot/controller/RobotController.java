@@ -1,9 +1,13 @@
 package com.idealo.toyrobot.controller;
 
-import static com.idealo.toyrobot.utils.URLS.URL_TOY_ROBOT;
+import static com.idealo.toyrobot.utils.URLS.URL_TOY_ROBOT_CREATE;
 import static com.idealo.toyrobot.utils.URLS.URL_TOY_ROBOT_DELETE;
-import static com.idealo.toyrobot.utils.URLS.URL_TOY_ROBOT_GET;
+import static com.idealo.toyrobot.utils.URLS.URL_TOY_ROBOT_GET_BY_ID;
 import static com.idealo.toyrobot.utils.URLS.URL_TOY_ROBOT_UPDATE;
+
+import java.util.List;
+
+import static com.idealo.toyrobot.utils.URLS.URL_TOY_ROBOT_GET_ALL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +26,7 @@ public class RobotController {
 	@Autowired
 	private RobotBusiness robotBusiness;
 
-	@RequestMapping(value = URL_TOY_ROBOT, method = RequestMethod.POST)
+	@RequestMapping(value = URL_TOY_ROBOT_CREATE, method = RequestMethod.POST)
 	public ResponseEntity<RobotResponseDto> createRobot(@RequestBody RobotRequestDto request) {
 		RobotResponseDto response = robotBusiness.createToyRobot(request);
 		return ResponseEntity.ok().body(response);
@@ -34,7 +38,7 @@ public class RobotController {
 		return ResponseEntity.ok().build();
 	}
 
-	@RequestMapping(value = URL_TOY_ROBOT_GET, method = RequestMethod.GET)
+	@RequestMapping(value = URL_TOY_ROBOT_GET_BY_ID, method = RequestMethod.GET)
 	public ResponseEntity<Robot> getRobotById(@PathVariable("id") String id) {
 		return ResponseEntity.ok().body(robotBusiness.getRobotById(id));
 	}
@@ -43,5 +47,10 @@ public class RobotController {
 	public ResponseEntity<?> deleteRobotById(@PathVariable("id") String id) {
 		robotBusiness.deleteRobotById(id);
 		return ResponseEntity.ok().build();
+	}
+	
+	@RequestMapping(value = URL_TOY_ROBOT_GET_ALL, method = RequestMethod.GET)
+	public ResponseEntity<List<Robot>> getAllRobots() {
+		return ResponseEntity.ok().body(robotBusiness.getAllRobots());
 	}
 }

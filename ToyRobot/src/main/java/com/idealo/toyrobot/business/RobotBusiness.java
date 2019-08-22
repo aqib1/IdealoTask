@@ -2,6 +2,7 @@ package com.idealo.toyrobot.business;
 
 import static com.idealo.toyrobot.utils.Constants.ERROR;
 
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.example.model.RobotRequestDto;
 import com.example.model.RobotResponseDto;
+import com.idealo.toyrobot.exceptions.EmptyDataSetException;
 import com.idealo.toyrobot.exceptions.InvalidRequestException;
 import com.idealo.toyrobot.exceptions.RobotNotFoundException;
 import com.idealo.toyrobot.models.Robot;
@@ -43,7 +45,14 @@ public class RobotBusiness {
 		if (r == ERROR)
 			throw new RobotNotFoundException("\nRobot again id [" + id + "] not found!");
 	}
-
+	
+	public List<Robot> getAllRobots() {
+		List<Robot> robots = robotService.getAllRobots();
+		if(robots.isEmpty())
+			throw new EmptyDataSetException("\nData is empty!! [Please add robots first]");
+		return robots;
+	}
+	
 	private void checkCoreRequirements(RobotRequestDto request) {
 		if (Objects.isNull(request)) {
 			throw new InvalidRequestException("Request is empty or null");

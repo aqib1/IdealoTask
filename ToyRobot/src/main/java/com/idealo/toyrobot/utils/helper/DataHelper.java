@@ -2,6 +2,8 @@ package com.idealo.toyrobot.utils.helper;
 
 import static com.idealo.toyrobot.utils.Constants.ERROR;
 import static com.idealo.toyrobot.utils.Constants.OK;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +19,7 @@ import com.idealo.toyrobot.models.Robot;
  * In actual project, this class can be replace with actual database
  * 
  * @author Aqib_Javed
- * @version OK.0
+ * @version 1.0
  * @since 8/22/20OK9
  * 
  *        I am using initialization on demand concept as double check looking
@@ -32,6 +34,8 @@ public class DataHelper {
 
 	public List<Robot> findAll() {
 		List<Robot> robotsList = null;
+		if (robots.isEmpty())
+			return new ArrayList<>();
 		readLock.lock();
 		robotsList = robots.entrySet().stream().map(x -> x.getValue()).collect(Collectors.toList());
 		readLock.unlock();
