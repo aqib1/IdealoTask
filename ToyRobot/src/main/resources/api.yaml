@@ -25,7 +25,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ToyRobotCreationRequest'
+              $ref: '#/components/schemas/RobotRequestDto'
       responses:
         200:
           description: Success
@@ -33,7 +33,7 @@ paths:
             application/json:
               schema:
                 type: object
-                $ref: '#/components/schemas/ToyRobotCreationResponse'
+                $ref: '#/components/schemas/RobotResponseDto'
        
   /toyrobot/{id}:
   
@@ -59,7 +59,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ToyRobotSimulationRequest'
+              $ref: '#/components/schemas/RobotSimulationRequestDto'
       responses:
         200:
           description: Success
@@ -86,7 +86,7 @@ paths:
             application/json:
               schema:
                 type: object
-                $ref: '#/components/schemas/ToyRobotSimulationResponse'
+                $ref: '#/components/schemas/RobotSimulationResponseDto'
  
   # DELETE method is used in /toyrobot/{id} API, this API is going to delete the toy robot against id and
   # from that id if robot not found it will throw bad request
@@ -109,22 +109,22 @@ paths:
                 
 components:
   schemas:
-    ToyRobotCreationRequest:
+    RobotRequestDto:
       properties:
         placeCommand:
           type: string
         robotName:
           type: string 
-    ToyRobotCreationResponse:
+    RobotResponseDto:
       properties:
         toyRobotId:
           type: string
-    ToyRobotSimulationRequest:
+    RobotSimulationRequestDto:
       properties:
         simulationType:
           type: object
           $ref: '#/components/schemas/Simulations'
-    ToyRobotSimulationResponse:
+    RobotSimulationResponseDto:
       properties:
         xPosition:
           type: integer

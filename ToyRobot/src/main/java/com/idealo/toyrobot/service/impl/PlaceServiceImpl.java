@@ -1,22 +1,20 @@
 package com.idealo.toyrobot.service.impl;
 
-import java.util.UUID;
-
 import org.springframework.stereotype.Service;
 
 import com.example.model.CardinalDirections;
-import com.example.model.ToyRobotCreationRequest;
+import com.example.model.RobotRequestDto;
 import com.idealo.toyrobot.exceptions.CordsOutOfBoundException;
 import com.idealo.toyrobot.exceptions.InvalidRequestException;
-import com.idealo.toyrobot.models.ToyRobot;
+import com.idealo.toyrobot.models.Robot;
 import com.idealo.toyrobot.service.PlaceService;
 import com.idealo.toyrobot.utils.Constants;
 
 @Service
 public class PlaceServiceImpl implements PlaceService {
 
-	public ToyRobot IOPlaceExecutor(ToyRobotCreationRequest request) {
-		ToyRobot toyRobot = getToyRobotByRequest(request);
+	public Robot IOPlaceExecutor(RobotRequestDto request) {
+		Robot toyRobot = getToyRobotByRequest(request);
 		String cmmd = request.getPlaceCommand();
 
 		if (!cmmd.contains(Constants.PLACE_COMMAND_PREFIX)) {
@@ -32,7 +30,7 @@ public class PlaceServiceImpl implements PlaceService {
 		return toyRobot;
 	}
 
-	private void setPlaceDataToToyRobot(String cmmd, ToyRobot toyRobot) {
+	private void setPlaceDataToToyRobot(String cmmd, Robot toyRobot) {
 		String[] cardinalData = cmmd.split(" ")[1].split(",");
 
 		Integer xValue = Integer.parseInt(cardinalData[0]);
@@ -54,12 +52,9 @@ public class PlaceServiceImpl implements PlaceService {
 				&& yValue <= Constants.TABLE_MAX_LIMIT && yValue >= Constants.TABLE_MIN_LIMIT;
 	}
 
-	private ToyRobot getToyRobotByRequest(ToyRobotCreationRequest request) {
-
-		ToyRobot toyRobot = new ToyRobot();
-		toyRobot.setUuid(UUID.randomUUID().toString());
+	private Robot getToyRobotByRequest(RobotRequestDto request) {
+		Robot toyRobot = new Robot();
 		toyRobot.setRobotName(request.getRobotName());
-
 		return toyRobot;
 	}
 }

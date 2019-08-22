@@ -1,8 +1,8 @@
 package com.idealo.toyrobot.factory.simulator;
 
-import com.idealo.toyrobot.models.ToyRobot;
+import com.idealo.toyrobot.models.Robot;
 
 public interface Simulator {
 
-	void execute(ToyRobot toyRobot);
+	void execute(Robot toyRobot);
 }

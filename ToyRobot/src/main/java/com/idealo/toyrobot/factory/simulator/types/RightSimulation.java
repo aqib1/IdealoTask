@@ -2,12 +2,12 @@ package com.idealo.toyrobot.factory.simulator.types;
 
 import com.example.model.CardinalDirections;
 import com.idealo.toyrobot.factory.simulator.Simulator;
-import com.idealo.toyrobot.models.ToyRobot;
+import com.idealo.toyrobot.models.Robot;
 
 public class RightSimulation implements Simulator {
 
 	@Override
-	public void execute(ToyRobot toyRobot) {
+	public void execute(Robot toyRobot) {
 		if (!toyRobot.getToyRobotSimulator().isOnTable()) {
 			
 		} else {
@@ -15,7 +15,7 @@ public class RightSimulation implements Simulator {
 		}
 	}
 
-	private void rightMovement(ToyRobot toyRobot) {
+	private void rightMovement(Robot toyRobot) {
 		switch (toyRobot.getToyRobotSimulator().getCardinalDirections()) {
 		case NORTH:
 			toyRobot.getToyRobotSimulator().setCardinalDirections(CardinalDirections.WEST);

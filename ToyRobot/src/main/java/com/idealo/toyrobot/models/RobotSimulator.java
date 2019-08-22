@@ -3,16 +3,16 @@ package com.idealo.toyrobot.models;
 import com.example.model.CardinalDirections;
 import com.idealo.toyrobot.utils.Constants;
 
-public class ToyRobotSimulator {
+public class RobotSimulator {
 
 	private Integer xPosition;
 	private Integer yPosition;
 	private CardinalDirections cardinalDirections;
 
-	public ToyRobotSimulator() {
+	public RobotSimulator() {
 	}
 
-	public ToyRobotSimulator(Integer xPosition, Integer yPosition, CardinalDirections cardinalDirections) {
+	public RobotSimulator(Integer xPosition, Integer yPosition, CardinalDirections cardinalDirections) {
 		this.xPosition = xPosition;
 		this.yPosition = yPosition;
 		this.cardinalDirections = cardinalDirections;

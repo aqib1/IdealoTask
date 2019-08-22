@@ -11,9 +11,10 @@ import org.springframework.web.context.request.WebRequest;
 import com.idealo.toyrobot.exceptions.CordsOutOfBoundException;
 import com.idealo.toyrobot.exceptions.InvalidParamException;
 import com.idealo.toyrobot.exceptions.InvalidRequestException;
+import com.idealo.toyrobot.exceptions.RobotNotFoundException;
 
 @ControllerAdvice
-public class ToyRobotSimulationExceptionHandler {
+public class GeneralExceptionHandler {
 
 	@ExceptionHandler(value = { InvalidRequestException.class })
 	public ResponseEntity<Object> handleInvalidRequestException(RuntimeException e, WebRequest wr) {
@@ -21,19 +22,26 @@ public class ToyRobotSimulationExceptionHandler {
 				+ "\n[Invalid Request! => (InvalidRequestException)]";
 		return new ResponseEntity<>(error, HttpStatus.EXPECTATION_FAILED);
 	}
-	
+
 	@ExceptionHandler(value = { InvalidParamException.class })
 	public ResponseEntity<Object> handleInvalidParamException(RuntimeException e, WebRequest wr) {
 		String error = Optional.of(e.getMessage()).orElse(e.getClass().getName())
 				+ "\n[Invalid param! => (InvalidParamException)]";
 		return new ResponseEntity<>(error, HttpStatus.EXPECTATION_FAILED);
 	}
-	
+
 	@ExceptionHandler(value = { CordsOutOfBoundException.class })
 	public ResponseEntity<Object> handleCordsOutOfBoundException(RuntimeException e, WebRequest wr) {
 		String error = Optional.of(e.getMessage()).orElse(e.getClass().getName())
 				+ "\n[coordinates out of bounds! => (CordsOutOfBoundException)]";
 		return new ResponseEntity<>(error, HttpStatus.EXPECTATION_FAILED);
 	}
-	
+
+	@ExceptionHandler(value = { RobotNotFoundException.class })
+	public ResponseEntity<Object> handleRobotNotFoundException(RuntimeException e, WebRequest wr) {
+		String error = Optional.of(e.getMessage()).orElse(e.getClass().getName())
+				+ "\n[Robot not found! => (RobotNotFoundException)]";
+		return new ResponseEntity<>(error, HttpStatus.EXPECTATION_FAILED);
+	}
+
 }

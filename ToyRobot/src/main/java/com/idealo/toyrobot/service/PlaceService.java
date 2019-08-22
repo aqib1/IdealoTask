@@ -1,8 +1,8 @@
 package com.idealo.toyrobot.service;
 
-import com.example.model.ToyRobotCreationRequest;
-import com.idealo.toyrobot.models.ToyRobot;
+import com.example.model.RobotRequestDto;
+import com.idealo.toyrobot.models.Robot;
 
 public interface PlaceService {
-	ToyRobot IOPlaceExecutor(ToyRobotCreationRequest request);
+	Robot IOPlaceExecutor(RobotRequestDto request);
 }

@@ -4,23 +4,23 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 
-public class ToyRobot {
+public class Robot {
 
 	private String uuid;
 	private String robotName;
 	private String createdAt;
-	private ToyRobotSimulator toyRobotSimulator;
+	private RobotSimulator toyRobotSimulator;
 
-	public ToyRobot() {
+	public Robot() {
 		this(0,UUID.randomUUID().toString(),"TEST-01",LocalDate.now().toString());
 	}
 
-	public ToyRobot(int id, String uuid, String robotName, String createdAt) {
+	public Robot(int id, String uuid, String robotName, String createdAt) {
 		super();
 		this.uuid = uuid;
 		this.robotName = robotName;
 		this.createdAt = createdAt;
-		this.toyRobotSimulator = new ToyRobotSimulator();
+		this.toyRobotSimulator = new RobotSimulator();
 	}
 
 	public String getUuid() {
@@ -47,7 +47,7 @@ public class ToyRobot {
 		this.createdAt = createdAt;
 	}
 
-	public ToyRobotSimulator getToyRobotSimulator() {
+	public RobotSimulator getToyRobotSimulator() {
 		return toyRobotSimulator;
 	}
 
