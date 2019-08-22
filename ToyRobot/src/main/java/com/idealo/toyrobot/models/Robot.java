@@ -3,6 +3,8 @@ package com.idealo.toyrobot.models;
 import java.time.LocalDate;
 import java.util.UUID;
 
+import com.idealo.toyrobot.utils.Constants;
+
 
 public class Robot {
 
@@ -12,7 +14,7 @@ public class Robot {
 	private RobotSimulator toyRobotSimulator;
 
 	public Robot() {
-		this(0,UUID.randomUUID().toString(),"TEST-01",LocalDate.now().toString());
+		this(0,UUID.randomUUID().toString(),Constants.DEFAULT_ROBOT_NAME,LocalDate.now().toString());
 	}
 
 	public Robot(int id, String uuid, String robotName, String createdAt) {

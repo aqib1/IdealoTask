@@ -148,6 +148,15 @@ components:
         cardinalDirection:
           type: object
           $ref: '#/components/schemas/CardinalDirections'
+    RobotDetailsResponse:
+      properties:
+        uuid:
+          type: string
+        robotName:
+          type: string
+        createdAt:    
+          type: string
+          
     Simulations:
       type: string
       enum:
