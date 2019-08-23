@@ -10,11 +10,20 @@ import com.idealo.toyrobot.models.Robot;
 import com.idealo.toyrobot.service.PlaceCommandService;
 import com.idealo.toyrobot.utils.Constants;
 
+/**
+ * @author Aqib_Javed
+ * @version 1.0
+ * @since 8/19/2019
+ */
 @Service
 public class PlaceCommandServiceImpl implements PlaceCommandService {
 
+	/**
+	 * @param request
+	 * @return
+	 */
 	public Robot IOPlaceCommandExecutor(RobotRequestDto request) {
-		Robot toyRobot = getToyRobotByRequest(request);
+		Robot toyRobot = getToyRobotFromRequest(request);
 		String cmmd = request.getPlaceCommand();
 
 		if (!cmmd.matches(Constants.PLACE_COMMAND_REGEX)) {
@@ -30,6 +39,10 @@ public class PlaceCommandServiceImpl implements PlaceCommandService {
 		return toyRobot;
 	}
 
+	/**
+	 * @param cmmd
+	 * @param toyRobot
+	 */
 	private void setPlaceDataToToyRobot(String cmmd, Robot toyRobot) {
 		String[] cardinalData = cmmd.split(" ")[1].split(",");
 
@@ -47,12 +60,21 @@ public class PlaceCommandServiceImpl implements PlaceCommandService {
 
 	}
 
+	/**
+	 * @param xValue
+	 * @param yValue
+	 * @return
+	 */
 	private boolean isToyRobotInTableLimit(Integer xValue, Integer yValue) {
 		return xValue <= Constants.TABLE_MAX_LIMIT && xValue >= Constants.TABLE_MIN_LIMIT
 				&& yValue <= Constants.TABLE_MAX_LIMIT && yValue >= Constants.TABLE_MIN_LIMIT;
 	}
 
-	private Robot getToyRobotByRequest(RobotRequestDto request) {
+	/**
+	 * @param request
+	 * @return
+	 */
+	private Robot getToyRobotFromRequest(RobotRequestDto request) {
 		Robot toyRobot = new Robot();
 		toyRobot.setRobotName(request.getRobotName());
 		return toyRobot;

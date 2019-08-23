@@ -33,6 +33,9 @@ class DataRepository {
 	private Lock writeLock = readWriteLock.writeLock();
 	private Map<String, Robot> robots = new HashMap<>();
 
+	/**
+	 * @return
+	 */
 	public List<Robot> findAll() {
 		List<Robot> robotsList = null;
 		if (robots.isEmpty())
@@ -43,6 +46,10 @@ class DataRepository {
 		return robotsList;
 	}
 
+	/**
+	 * @param uuid
+	 * @return
+	 */
 	public Robot findById(String uuid) {
 		Robot robot = null;
 		readLock.lock();
@@ -52,6 +59,10 @@ class DataRepository {
 		return robot;
 	}
 
+	/**
+	 * @param uuid
+	 * @return
+	 */
 	public int deleteById(String uuid) {
 		int r = OK;
 		writeLock.lock();
@@ -63,6 +74,9 @@ class DataRepository {
 		return r;
 	}
 
+	/**
+	 * @return
+	 */
 	public int deleteAll() {
 		writeLock.lock();
 		try {
@@ -75,6 +89,11 @@ class DataRepository {
 		return OK;
 	}
 
+	/**
+	 * @param uuid
+	 * @param robot
+	 * @return
+	 */
 	public int update(String uuid, Robot robot) {
 		int r = ERROR;
 		writeLock.lock();
@@ -86,6 +105,10 @@ class DataRepository {
 		return r;
 	}
 
+	/**
+	 * @param robot
+	 * @return
+	 */
 	public String add(Robot robot) {
 		writeLock.lock();
 		String uuid = robot.getUuid();
@@ -94,10 +117,18 @@ class DataRepository {
 		return uuid;
 	}
 
+	/**
+	 * @author Aqib_Javed
+	 * @version 1.0
+     * @since 8/22/2019
+	 */
 	private static class InstanceHolder {
 		private static final DataRepository INSTANCE = new DataRepository();
 	}
 
+	/**
+	 * @return
+	 */
 	public static DataRepository getInstance() {
 		return InstanceHolder.INSTANCE;
 	}

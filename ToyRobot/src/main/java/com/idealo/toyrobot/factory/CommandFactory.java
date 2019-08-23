@@ -8,8 +8,17 @@ import com.idealo.toyrobot.factory.simulator.types.MoveSimulator;
 import com.idealo.toyrobot.factory.simulator.types.ReportSimulator;
 import com.idealo.toyrobot.factory.simulator.types.RightSimulation;
 
+/**
+ * @author Aqib_Javed
+ * @version 1.0
+ * @since 8/20/2019
+ */
 public class CommandFactory {
 
+	/**
+	 * @param simulations
+	 * @return
+	 */
 	public static Simulator getSimulator(Simulations simulations) {
 		Simulator simulator = null;
 		switch (simulations) {

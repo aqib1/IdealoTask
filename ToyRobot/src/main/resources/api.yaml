@@ -164,6 +164,10 @@ components:
             type: string
     RobotSimulationResponseDto:
       properties:
+       report:
+          type: string       
+    RobotSimulationStackResponseDto:
+      properties:
        reportList:
           type: array
           items:
@@ -178,9 +182,7 @@ components:
           type: integer
         cordinalDirection:
           type: object
-          $ref: '#/components/schemas/CardinalDirections'       
-       
-            
+          $ref: '#/components/schemas/CardinalDirections'
     RobotDetailsResponse:
       properties:
         uuid:

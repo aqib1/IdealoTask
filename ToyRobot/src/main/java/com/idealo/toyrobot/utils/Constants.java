@@ -1,5 +1,10 @@
 package com.idealo.toyrobot.utils;
 
+/**
+ * @author Aqib_Javed
+ * @version 1.0
+ * @since 8/19/2019
+ */
 public class Constants {
 
 	public static final int TABLE_MAX_LIMIT = 4;

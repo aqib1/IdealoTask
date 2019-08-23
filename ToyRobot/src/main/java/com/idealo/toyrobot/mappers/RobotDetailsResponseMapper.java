@@ -9,6 +9,11 @@ import org.mapstruct.Mappings;
 import com.example.model.RobotDetailsResponse;
 import com.idealo.toyrobot.models.Robot;
 
+/**
+ * @author Aqib_Javed
+ * @version 1.0
+ * @since 8/22/2019
+ */
 @Mapper(componentModel = "spring")
 public interface RobotDetailsResponseMapper {
 

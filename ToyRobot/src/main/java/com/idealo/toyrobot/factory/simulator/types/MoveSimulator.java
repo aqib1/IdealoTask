@@ -3,8 +3,16 @@ package com.idealo.toyrobot.factory.simulator.types;
 import com.idealo.toyrobot.factory.simulator.Simulator;
 import com.idealo.toyrobot.models.Robot;
 
+/**
+ * @author Aqib_Javed
+ * @version 1.0
+ * @since 8/22/2019
+ */
 public class MoveSimulator implements Simulator {
 
+	/**
+	 * @param toyRobot
+	 */
 	@Override
 	public void execute(Robot toyRobot) {
 		if (!toyRobot.getToyRobotSimulator().isOnTable()) {
@@ -14,6 +22,10 @@ public class MoveSimulator implements Simulator {
 		}
 	}
 
+	/**
+	 * @param toyRobot
+	 */
+	
 	private void moveRobot(Robot toyRobot) {
 		switch (toyRobot.getToyRobotSimulator().getCardinalDirections()) {
 		case NORTH:

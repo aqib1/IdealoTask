@@ -16,6 +16,11 @@ import com.idealo.toyrobot.mappers.RobotDetailsResponseMapper;
 import com.idealo.toyrobot.models.Robot;
 import com.idealo.toyrobot.service.RobotService;
 
+/**
+ * @author Aqib_Javed
+ * @version 1.0
+ * @since 8/20/2019
+ */
 @Component
 public class RobotBusiness {
 
@@ -25,11 +30,19 @@ public class RobotBusiness {
 	@Autowired
 	private RobotDetailsResponseMapper robotDetailsResponseMapper;
 
+	/**
+	 * @param request
+	 * @return
+	 */
 	public RobotResponseDto createToyRobot(RobotRequestDto request) {
 		checkCoreRequirements(request);
 		return robotService.createToyRobot(request);
 	}
 
+	/**
+	 * @param id
+	 * @param request
+	 */
 	public void updateRobot(String id, RobotRequestDto request) {
 		checkCoreRequirements(request);
 		robotService.updateRobot(id, request);
@@ -43,12 +56,18 @@ public class RobotBusiness {
 		return robotDetailsResponseMapper.robotToRobotDetailsResponse(robot);
 	}
 
+	/**
+	 * @param id
+	 */
 	public void deleteRobotById(String id) {
 		int r = robotService.deleteRobotById(id);
 		if (r == ERROR)
 			throw new RobotNotFoundException("\nRobot again id [" + id + "] not found!");
 	}
 
+	/**
+	 * @return
+	 */
 	public List<RobotDetailsResponse> getAllRobots() {
 		List<Robot> robots = robotService.getAllRobots();
 		if (robots.isEmpty())
@@ -56,6 +75,9 @@ public class RobotBusiness {
 		return robotDetailsResponseMapper.robotsListToRobotDetailsResponseList(robots);
 	}
 
+	/**
+	 * @param request
+	 */
 	private void checkCoreRequirements(RobotRequestDto request) {
 		if (Objects.isNull(request)) {
 			throw new InvalidRequestException("Request is empty or null");

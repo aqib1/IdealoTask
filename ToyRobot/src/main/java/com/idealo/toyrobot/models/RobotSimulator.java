@@ -7,51 +7,92 @@ import com.example.model.CardinalDirections;
 import com.idealo.toyrobot.exceptions.CordsOutOfBoundException;
 import com.idealo.toyrobot.utils.Constants;
 
+/**
+ * @author Aqib_Javed
+ * @version 1.0
+ * @since 8/20/2019
+ *
+ */
 public class RobotSimulator {
 
 	private AtomicInteger xPosition;
 	private AtomicInteger yPosition;
 	private CardinalDirections cardinalDirections;
 	private List<String> simulationReport = new ArrayList<>();
+	private String currentReport;
 
 	public RobotSimulator() {
 	}
 
+	/**
+	 * @param xPosition
+	 * @param yPosition
+	 * @param cardinalDirections
+	 */
 	public RobotSimulator(Integer xPosition, Integer yPosition, CardinalDirections cardinalDirections) {
 		this.xPosition = new AtomicInteger(xPosition);
 		this.yPosition = new AtomicInteger(yPosition);
 		this.cardinalDirections = cardinalDirections;
 	}
 
+	/**
+	 * @return
+	 */
 	public Integer getxPosition() {
 		return xPosition.get();
 	}
 
+	/**
+	 * @param xPosition
+	 */
 	public void setxPosition(Integer xPosition) {
 		this.xPosition = new AtomicInteger(xPosition);
 	}
 
+	/**
+	 * @return
+	 */
 	public Integer getyPosition() {
 		return yPosition.get();
 	}
 
+	/**
+	 * @param yPosition
+	 */
 	public void setyPosition(Integer yPosition) {
 		this.yPosition = new AtomicInteger(yPosition);
 	}
 
+	/**
+	 * @return
+	 */
 	public CardinalDirections getCardinalDirections() {
 		return cardinalDirections;
 	}
 
+	/**
+	 * @param cardinalDirections
+	 */
 	public void setCardinalDirections(CardinalDirections cardinalDirections) {
 		this.cardinalDirections = cardinalDirections;
 	}
 
 	public void submitReports() {
-		simulationReport.add(
-				String.join(",", String.valueOf(xPosition), String.valueOf(yPosition), cardinalDirections.toString()));
+		currentReport = String.join(",", String.valueOf(xPosition), String.valueOf(yPosition),
+				cardinalDirections.toString());
+		simulationReport.add(currentReport);
 	}
 
+	/**
+	 * @return
+	 */
+	public String getCurrentReport() {
+		return currentReport;
+	}
+
+	/**
+	 * @return
+	 */
 	public List<String> getSimulationReport() {
 		return simulationReport;
 	}
@@ -102,6 +143,9 @@ public class RobotSimulator {
 			throwCordsException();
 	}
 
+	/**
+	 * @return
+	 */
 	public boolean isOnTable() {
 		return xPosition != null && yPosition != null && cardinalDirections != null;
 	}
