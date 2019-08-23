@@ -1,12 +1,23 @@
 package com.idealo.toyrobot.utils;
 
+/**
+ * @author Aqib_Javed
+ * @version 1.0
+ * @since 8/22/2019
+ *
+ *        All URLS Details
+ */
 public class URLS {
-	
-	public static final String URL_TOY_ROBOT_CREATE = "/toyrobot";
-	public static final String URL_TOY_ROBOT_GET_ALL = "/toyrobot";
-	public static final String URL_TOY_ROBOT_GET_BY_ID = URL_TOY_ROBOT_CREATE + "/{id}";
-	public static final String URL_TOY_ROBOT_DELETE = URL_TOY_ROBOT_CREATE + "/{id}";
-	public static final String URL_TOY_ROBOT_UPDATE = URL_TOY_ROBOT_CREATE + "/{id}";
+
+	/************ TOY ROBOT CREATION API *********/
+	public static final String TOY_ROBOT_URL_BASE = "/toyrobot/*";
+	public static final String URL_TOY_ROBOT_URL_GET_BY_ID = "/{id}";
+	public static final String URL_TOY_ROBOT_URL_DELETE = "/{id}";
+	public static final String URL_TOY_ROBOT_URL_UPDATE = "/{id}";
+
+	/************* SIMULATOR API *************/
+	public static final String SIMULATOR_URL_BASE = "/simulator/*";
+	public static final String SIMULATOR_URL_SIMULATE = "/{id}";
 
 	private URLS() {
 

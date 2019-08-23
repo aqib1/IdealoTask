@@ -1,10 +1,9 @@
 package com.idealo.toyrobot.controller;
 
-import static com.idealo.toyrobot.utils.URLS.URL_TOY_ROBOT_CREATE;
-import static com.idealo.toyrobot.utils.URLS.URL_TOY_ROBOT_DELETE;
-import static com.idealo.toyrobot.utils.URLS.URL_TOY_ROBOT_GET_ALL;
-import static com.idealo.toyrobot.utils.URLS.URL_TOY_ROBOT_GET_BY_ID;
-import static com.idealo.toyrobot.utils.URLS.URL_TOY_ROBOT_UPDATE;
+import static com.idealo.toyrobot.utils.URLS.TOY_ROBOT_URL_BASE;
+import static com.idealo.toyrobot.utils.URLS.URL_TOY_ROBOT_URL_DELETE;
+import static com.idealo.toyrobot.utils.URLS.URL_TOY_ROBOT_URL_GET_BY_ID;
+import static com.idealo.toyrobot.utils.URLS.URL_TOY_ROBOT_URL_UPDATE;
 
 import java.util.List;
 
@@ -22,35 +21,36 @@ import com.example.model.RobotResponseDto;
 import com.idealo.toyrobot.business.RobotBusiness;
 
 @RestController
+@RequestMapping(TOY_ROBOT_URL_BASE)
 public class RobotController {
 
 	@Autowired
 	private RobotBusiness robotBusiness;
 
-	@RequestMapping(value = URL_TOY_ROBOT_CREATE, method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<RobotResponseDto> createRobot(@RequestBody RobotRequestDto request) {
 		RobotResponseDto response = robotBusiness.createToyRobot(request);
 		return ResponseEntity.ok().body(response);
 	}
 
-	@RequestMapping(value = URL_TOY_ROBOT_UPDATE, method = RequestMethod.PUT)
-	public ResponseEntity<?> updateRobot(@PathVariable("id") String id, RobotRequestDto request) {
+	@RequestMapping(value = URL_TOY_ROBOT_URL_UPDATE, method = RequestMethod.PUT)
+	public ResponseEntity<?> updateRobot(@PathVariable("id") String id, @RequestBody RobotRequestDto request) {
 		robotBusiness.updateRobot(id, request);
 		return ResponseEntity.ok().build();
 	}
 
-	@RequestMapping(value = URL_TOY_ROBOT_GET_BY_ID, method = RequestMethod.GET)
+	@RequestMapping(value = URL_TOY_ROBOT_URL_GET_BY_ID, method = RequestMethod.GET)
 	public ResponseEntity<RobotDetailsResponse> getRobotById(@PathVariable("id") String id) {
 		return ResponseEntity.ok().body(robotBusiness.getRobotById(id));
 	}
 
-	@RequestMapping(value = URL_TOY_ROBOT_DELETE, method = RequestMethod.DELETE)
+	@RequestMapping(value = URL_TOY_ROBOT_URL_DELETE, method = RequestMethod.DELETE)
 	public ResponseEntity<?> deleteRobotById(@PathVariable("id") String id) {
 		robotBusiness.deleteRobotById(id);
 		return ResponseEntity.ok().build();
 	}
 	
-	@RequestMapping(value = URL_TOY_ROBOT_GET_ALL, method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<RobotDetailsResponse>> getAllRobots() {
 		return ResponseEntity.ok().body(robotBusiness.getAllRobots());
 	}

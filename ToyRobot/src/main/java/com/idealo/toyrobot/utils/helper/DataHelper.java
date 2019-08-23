@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -87,7 +86,7 @@ public class DataHelper {
 
 	public String add(Robot robot) {
 		writeLock.lock();
-		String uuid = UUID.randomUUID().toString();
+		String uuid = robot.getUuid();
 		robots.put(uuid, robot);
 		writeLock.unlock();
 		return uuid;
