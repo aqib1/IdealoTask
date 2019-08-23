@@ -3,7 +3,7 @@ package com.idealo.toyrobot.factory.simulator.types;
 import com.idealo.toyrobot.factory.simulator.Simulator;
 import com.idealo.toyrobot.models.Robot;
 
-public class MoveOperation implements Simulator {
+public class MoveSimulator implements Simulator {
 
 	@Override
 	public void execute(Robot toyRobot) {

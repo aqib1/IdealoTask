@@ -1,4 +1,4 @@
-package com.idealo.toyrobot.utils.helper;
+package com.idealo.toyrobot.repository;
 
 import static com.idealo.toyrobot.utils.Constants.ERROR;
 import static com.idealo.toyrobot.utils.Constants.OK;
@@ -22,9 +22,11 @@ import com.idealo.toyrobot.models.Robot;
  * @since 8/22/2019
  * 
  *        I am using initialization on demand concept as double check looking
- *        singleton failed in the multi-processed systems.
+ *        singleton failed in the multi-processed systems. Its a class with
+ *        default access modifier so that no one can access that from outside of
+ *        package
  */
-public class DataHelper {
+class DataRepository {
 
 	private ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
 	private Lock readLock = readWriteLock.readLock();
@@ -93,14 +95,14 @@ public class DataHelper {
 	}
 
 	private static class InstanceHolder {
-		private static final DataHelper INSTANCE = new DataHelper();
+		private static final DataRepository INSTANCE = new DataRepository();
 	}
 
-	public static DataHelper getInstance() {
+	public static DataRepository getInstance() {
 		return InstanceHolder.INSTANCE;
 	}
 
-	private DataHelper() {
+	private DataRepository() {
 
 	}
 }

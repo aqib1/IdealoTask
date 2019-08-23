@@ -129,19 +129,16 @@ components:
           type: string
     RobotSimulationRequestDto:
       properties:
-        simulationType:
+        commandsList:
           type: array
           items:
             type: string
     RobotSimulationResponseDto:
       properties:
-        xPosition:
-          type: integer
-        yPosition:
-          type: integer
-        cardinalDirection:
-          type: object
-          $ref: '#/components/schemas/CardinalDirections'
+       reportList:
+          type: array
+          items:
+            type: string
     RobotDetailsResponse:
       properties:
         uuid:
@@ -155,6 +152,9 @@ components:
       enum:
       - LEFT
       - RIGHT
+      - MOVE
+      - REPORT
+      - PLACE
     CardinalDirections:
       type: string
       enum:
@@ -162,9 +162,3 @@ components:
       - EAST
       - SOUTH
       - WEST
-    IOOperations:
-      type: string
-      enum:
-      - MOVE
-      - REPORT
-      - PLACE

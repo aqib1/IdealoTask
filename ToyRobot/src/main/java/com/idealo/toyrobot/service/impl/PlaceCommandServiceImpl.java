@@ -39,7 +39,7 @@ public class PlaceCommandServiceImpl implements PlaceCommandService {
 		if (isToyRobotInTableLimit(xValue, yValue)) {
 			toyRobot.getToyRobotSimulator().setxPosition(xValue);
 			toyRobot.getToyRobotSimulator().setyPosition(yValue);
-			toyRobot.getToyRobotSimulator().setCardinalDirections(CardinalDirections.valueOf(cardinalData[2]));
+			toyRobot.getToyRobotSimulator().setCardinalDirections(CardinalDirections.valueOf(cardinalData[2].toUpperCase()));
 		} else {
 			throw new CordsOutOfBoundException("\nCoordinates of ToyRobot not exists in the max range table["
 					+ Constants.TABLE_MIN_LIMIT + "," + Constants.TABLE_MAX_LIMIT + "]");
