@@ -751,6 +751,13 @@
 };
             defs.RobotSimulationResponseDto = {
   "properties" : {
+    "report" : {
+      "type" : "string"
+    }
+  }
+};
+            defs.RobotSimulationStackResponseDto = {
+  "properties" : {
     "reportList" : {
       "type" : "array",
       "items" : {
@@ -796,8 +803,8 @@
                       <a href="#api-RobotCreation-updateRobot">updateRobot</a>
                     </li>
                   <li class="nav-header" data-group="RobotSimulation"><a href="#api-RobotSimulation">API Methods - Robot Simulation</a></li>
-                    <li data-group="RobotSimulation" data-name="getSimulationsAgainstId" class="">
-                      <a href="#api-RobotSimulation-getSimulationsAgainstId">getSimulationsAgainstId</a>
+                    <li data-group="RobotSimulation" data-name="getAllRobotsSimulation" class="">
+                      <a href="#api-RobotSimulation-getAllRobotsSimulation">getAllRobotsSimulation</a>
                     </li>
                     <li data-group="RobotSimulation" data-name="simulateRobot" class="">
                       <a href="#api-RobotSimulation-simulateRobot">simulateRobot</a>
@@ -2232,11 +2239,11 @@ except ApiException as e:
                   </section>
                 <section id="api-RobotSimulation">
                   <h1>Robot Simulation</h1>
-                    <div id="api-RobotSimulation-getSimulationsAgainstId">
-                      <article id="api-RobotSimulation-getSimulationsAgainstId-0" data-group="User" data-name="getSimulationsAgainstId" data-version="0">
+                    <div id="api-RobotSimulation-getAllRobotsSimulation">
+                      <article id="api-RobotSimulation-getAllRobotsSimulation-0" data-group="User" data-name="getAllRobotsSimulation" data-version="0">
                         <div class="pull-left">
-                          <h1>getSimulationsAgainstId</h1>
-                          <p>get simulation stack against robot id</p>
+                          <h1>getAllRobotsSimulation</h1>
+                          <p>simulate robot on table</p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
@@ -2249,24 +2256,24 @@ except ApiException as e:
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-RobotSimulation-getSimulationsAgainstId-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-RobotSimulation-getSimulationsAgainstId-0-java">Java</a></li>
-                          <li class=""><a href="#examples-RobotSimulation-getSimulationsAgainstId-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-RobotSimulation-getSimulationsAgainstId-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-RobotSimulation-getSimulationsAgainstId-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-RobotSimulation-getSimulationsAgainstId-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-RobotSimulation-getSimulationsAgainstId-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-RobotSimulation-getSimulationsAgainstId-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-RobotSimulation-getSimulationsAgainstId-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-RobotSimulation-getSimulationsAgainstId-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-RobotSimulation-getSimulationsAgainstId-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-RobotSimulation-getAllRobotsSimulation-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-RobotSimulation-getAllRobotsSimulation-0-java">Java</a></li>
+                          <li class=""><a href="#examples-RobotSimulation-getAllRobotsSimulation-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-RobotSimulation-getAllRobotsSimulation-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-RobotSimulation-getAllRobotsSimulation-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-RobotSimulation-getAllRobotsSimulation-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-RobotSimulation-getAllRobotsSimulation-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-RobotSimulation-getAllRobotsSimulation-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-RobotSimulation-getAllRobotsSimulation-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-RobotSimulation-getAllRobotsSimulation-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-RobotSimulation-getAllRobotsSimulation-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-RobotSimulation-getSimulationsAgainstId-0-curl">
+                          <div class="tab-pane active" id="examples-RobotSimulation-getAllRobotsSimulation-0-curl">
                             <pre class="prettyprint"><code class="language-bsh">curl -X GET "//simulator"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-RobotSimulation-getSimulationsAgainstId-0-java">
+                          <div class="tab-pane" id="examples-RobotSimulation-getAllRobotsSimulation-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
@@ -2280,48 +2287,45 @@ public class RobotSimulationApiExample {
     public static void main(String[] args) {
         
         RobotSimulationApi apiInstance = new RobotSimulationApi();
-        String id = id_example; // String | id for toy robot
         try {
-            RobotSimulationResponseDto result = apiInstance.getSimulationsAgainstId(id);
+            RobotSimulationResponseDto result = apiInstance.getAllRobotsSimulation();
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling RobotSimulationApi#getSimulationsAgainstId");
+            System.err.println("Exception when calling RobotSimulationApi#getAllRobotsSimulation");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-RobotSimulation-getSimulationsAgainstId-0-android">
+                          <div class="tab-pane" id="examples-RobotSimulation-getAllRobotsSimulation-0-android">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.RobotSimulationApi;
 
 public class RobotSimulationApiExample {
 
     public static void main(String[] args) {
         RobotSimulationApi apiInstance = new RobotSimulationApi();
-        String id = id_example; // String | id for toy robot
         try {
-            RobotSimulationResponseDto result = apiInstance.getSimulationsAgainstId(id);
+            RobotSimulationResponseDto result = apiInstance.getAllRobotsSimulation();
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling RobotSimulationApi#getSimulationsAgainstId");
+            System.err.println("Exception when calling RobotSimulationApi#getAllRobotsSimulation");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-RobotSimulation-getSimulationsAgainstId-0-groovy">
+  <div class="tab-pane" id="examples-RobotSimulation-getAllRobotsSimulation-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-RobotSimulation-getSimulationsAgainstId-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">String *id = id_example; // id for toy robot
-
+                            <div class="tab-pane" id="examples-RobotSimulation-getAllRobotsSimulation-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">
 RobotSimulationApi *apiInstance = [[RobotSimulationApi alloc] init];
 
-// get simulation stack against robot id
-[apiInstance getSimulationsAgainstIdWith:id
-              completionHandler: ^(RobotSimulationResponseDto output, NSError* error) {
+// simulate robot on table
+[apiInstance getAllRobotsSimulationWithCompletionHandler: 
+              ^(RobotSimulationResponseDto output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -2332,12 +2336,10 @@ RobotSimulationApi *apiInstance = [[RobotSimulationApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-RobotSimulation-getSimulationsAgainstId-0-javascript">
+                            <div class="tab-pane" id="examples-RobotSimulation-getAllRobotsSimulation-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var ToyRobotSimulationApplication = require('toy_robot_simulation_application');
 
 var api = new ToyRobotSimulationApplication.RobotSimulationApi()
-var id = id_example; // {{String}} id for toy robot
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -2345,14 +2347,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.getSimulationsAgainstId(id, callback);
+api.getAllRobotsSimulation(callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-RobotSimulation-getSimulationsAgainstId-0-angular">
+                            <!--<div class="tab-pane" id="examples-RobotSimulation-getAllRobotsSimulation-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-RobotSimulation-getSimulationsAgainstId-0-csharp">
+                            <div class="tab-pane" id="examples-RobotSimulation-getAllRobotsSimulation-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -2361,23 +2363,22 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class getSimulationsAgainstIdExample
+    public class getAllRobotsSimulationExample
     {
         public void main()
         {
 
             var apiInstance = new RobotSimulationApi();
-            var id = id_example;  // String | id for toy robot
 
             try
             {
-                // get simulation stack against robot id
-                RobotSimulationResponseDto result = apiInstance.getSimulationsAgainstId(id);
+                // simulate robot on table
+                RobotSimulationResponseDto result = apiInstance.getAllRobotsSimulation();
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling RobotSimulationApi.getSimulationsAgainstId: " + e.Message );
+                Debug.Print("Exception when calling RobotSimulationApi.getAllRobotsSimulation: " + e.Message );
             }
         }
     }
@@ -2385,40 +2386,38 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-RobotSimulation-getSimulationsAgainstId-0-php">
+                            <div class="tab-pane" id="examples-RobotSimulation-getAllRobotsSimulation-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
 $api_instance = new Swagger\Client\ApiRobotSimulationApi();
-$id = id_example; // String | id for toy robot
 
 try {
-    $result = $api_instance->getSimulationsAgainstId($id);
+    $result = $api_instance->getAllRobotsSimulation();
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling RobotSimulationApi->getSimulationsAgainstId: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling RobotSimulationApi->getAllRobotsSimulation: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-RobotSimulation-getSimulationsAgainstId-0-perl">
+                            <div class="tab-pane" id="examples-RobotSimulation-getAllRobotsSimulation-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::RobotSimulationApi;
 
 my $api_instance = WWW::SwaggerClient::RobotSimulationApi->new();
-my $id = id_example; # String | id for toy robot
 
 eval { 
-    my $result = $api_instance->getSimulationsAgainstId(id => $id);
+    my $result = $api_instance->getAllRobotsSimulation();
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling RobotSimulationApi->getSimulationsAgainstId: $@\n";
+    warn "Exception when calling RobotSimulationApi->getAllRobotsSimulation: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-RobotSimulation-getSimulationsAgainstId-0-python">
+                            <div class="tab-pane" id="examples-RobotSimulation-getAllRobotsSimulation-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -2427,48 +2426,18 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = swagger_client.RobotSimulationApi()
-id = id_example # String | id for toy robot
 
 try: 
-    # get simulation stack against robot id
-    api_response = api_instance.get_simulations_against_id(id)
+    # simulate robot on table
+    api_response = api_instance.get_all_robots_simulation()
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling RobotSimulationApi->getSimulationsAgainstId: %s\n" % e)</code></pre>
+    print("Exception when calling RobotSimulationApi->getAllRobotsSimulation: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
                           <h2>Parameters</h2>
 
-                            <div class="methodsubtabletitle">Path parameters</div>
-                            <table id="methodsubtable">
-                                <tr>
-                                  <th width="150px">Name</th>
-                                  <th>Description</th>
-                                </tr>
-                                  <tr><td style="width:150px;">id*</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_getSimulationsAgainstId_id">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      String
-                                                  </span>
-                                  
-                                                      <div class="inner description">
-                                                          id for toy robot
-                                                      </div>
-                                              </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
-                            </table>
 
 
 
@@ -2479,14 +2448,14 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-getSimulationsAgainstId-200-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-getAllRobotsSimulation-200-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-getSimulationsAgainstId-200-schema">
-                                  <div id='responses-getSimulationsAgainstId-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-getAllRobotsSimulation-200-schema">
+                                  <div id='responses-getAllRobotsSimulation-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -2512,14 +2481,14 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-getSimulationsAgainstId-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-getSimulationsAgainstId-200-schema-200');
+                                        $('#responses-getAllRobotsSimulation-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-getAllRobotsSimulation-200-schema-200');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-getSimulationsAgainstId-200-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-getAllRobotsSimulation-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
@@ -2878,8 +2847,8 @@ except ApiException as e:
           <div id="footer">
             <div id="api-_footer">
               <p>Suggestions, contact, support and error reporting;
-                  <div class="app-desc">GitHub URL: <a href="https://github.com/aqib1/IdealoTask">https://github.com/aqib1/IdealoTask</a></div>
-                  <div class="app-desc">Contact Info: <a href="aqibbutt3078@gmail.com">aqibbutt3078@gmail.com</a></div>
+                  <div class="app-desc">GitHub URL: <a href=" https://github.com/aqib1/IdealoTask"> https://github.com/aqib1/IdealoTask</a></div>
+                  <div class="app-desc">Contact Info: <a href="hello@helloreverb.com">hello@helloreverb.com</a></div>
               </p>
                 <div class="license-info"><strong>All rights reserved</strong></div>
                 <div class="license-url">https://www.idealo.de/</div>
