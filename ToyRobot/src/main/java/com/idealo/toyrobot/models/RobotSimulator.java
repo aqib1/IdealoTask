@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import com.example.model.CardinalDirections;
+import com.idealo.toyrobot.exceptions.CordsOutOfBoundException;
 import com.idealo.toyrobot.utils.Constants;
 
 public class RobotSimulator {
@@ -70,21 +71,35 @@ public class RobotSimulator {
 	public void moveToNorth() {
 		if (yPosition.get() < Constants.TABLE_MAX_LIMIT)
 			yPosition.incrementAndGet();
+		else
+			throwCordsException();
+	}
+
+	private void throwCordsException() {
+		throw new CordsOutOfBoundException(
+				"(X,Y) [" + xPosition + "," + yPosition + "] are out of bounds, table limit (X,Y) ["
+						+ Constants.TABLE_MIN_LIMIT + "," + Constants.TABLE_MAX_LIMIT + "]");
 	}
 
 	public void moveToSouth() {
 		if (yPosition.get() > Constants.TABLE_MIN_LIMIT)
 			yPosition.decrementAndGet();
+		else
+			throwCordsException();
 	}
 
 	public void moveToEast() {
 		if (xPosition.get() < Constants.TABLE_MAX_LIMIT)
 			xPosition.incrementAndGet();
+		else
+			throwCordsException();
 	}
 
 	public void moveToWest() {
 		if (xPosition.get() > Constants.TABLE_MIN_LIMIT)
 			xPosition.decrementAndGet();
+		else
+			throwCordsException();
 	}
 
 	public boolean isOnTable() {

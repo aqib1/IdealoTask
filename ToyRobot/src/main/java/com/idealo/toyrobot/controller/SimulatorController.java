@@ -27,4 +27,7 @@ public class SimulatorController {
 			@RequestBody RobotSimulationRequestDto requestDto) {
 		return ResponseEntity.ok().body(simulatorBusiness.simulateRobot(id, requestDto));
 	}
+	
+	//Create API to get all simulation information against uuid of each robot.
 }
+ 

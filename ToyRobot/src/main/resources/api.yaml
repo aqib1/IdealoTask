@@ -25,8 +25,8 @@ paths:
     post:
       tags:
       - Robot Creation
-      summary: Create toyrobot on provided positions of the table top
-      operationId: createToyRobot
+      summary: Create robot on provided positions of the table top
+      operationId: createRobot
       requestBody:
         description: request body required for creation of robot which accpet robot initial position
         required: true
@@ -46,8 +46,66 @@ paths:
     put:
       tags:
       - Robot Creation
-      summary: Simulate toyrobot on provided directions on the table top
-      operationId: simulateToyRobot
+      summary: Update robot on provided directions on the table top
+      operationId: updateRobot
+      parameters:
+      - in: path
+        name: id
+        description: id for toy robot
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: request body required for update the robot intial state which recieve simutaion types
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RobotRequestDto'
+      responses:
+        200:
+          description: Success
+    get:
+      tags:
+      - Robot Creation
+      summary: Get robot against its given id.
+      operationId: getRobotById
+      parameters:
+      - in: path
+        name: id
+        description: id for toy robot
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/RobotDetailsResponse'
+    delete:
+      tags:
+      - Robot Creation
+      summary: delete the robot againt the given id
+      operationId: deleteRobotById
+      parameters:
+      - in: path
+        name: id
+        description: id for toy robot
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+  /simulator:
+    post:
+      tags:
+      - Robot Simulation
+      summary: simulate robot on table
+      operationId: simulateRobot
       parameters:
       - in: path
         name: id
@@ -65,18 +123,17 @@ paths:
       responses:
         200:
           description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/RobotSimulationResponseDto'
+    
     get:
       tags:
-      - Robot Creation
-      summary: Get the latest direction of toy robot simulation
-      operationId: getToyRobotSimulation
-      parameters:
-      - in: path
-        name: id
-        description: id for toy robot
-        required: true
-        schema:
-          type: string
+      - Robot Simulation
+      summary: simulate robot on table
+      operationId: getAllRobotsSimulation
       responses:
         200:
           description: Success
@@ -85,36 +142,8 @@ paths:
               schema:
                 type: object
                 $ref: '#/components/schemas/RobotSimulationResponseDto'
-    delete:
-      tags:
-      - Robot Creation
-      summary: delete the robot againt the given id
-      operationId: deleteToyRobotSimulation
-      parameters:
-      - in: path
-        name: id
-        description: id for toy robot
-        required: true
-        schema:
-          type: string
-      responses:
-        200:
-          description: Success
-  /simulator:
-    post:
-      tags:
-      - Robot Simulation
-      summary: simulate robot on table
-      operationId: simulateRobot
-      responses:
-        200:
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/RobotDetailsResponse'
+                
+                
 components:
   schemas:
     RobotRequestDto:
@@ -139,6 +168,19 @@ components:
           type: array
           items:
             type: string
+    RobotCordsResponseDto:
+      properties:
+        uuid:
+          type: string
+        xPosition:
+          type: integer
+        yPosition:
+          type: integer
+        cordinalDirection:
+          type: object
+          $ref: '#/components/schemas/CardinalDirections'       
+       
+            
     RobotDetailsResponse:
       properties:
         uuid:

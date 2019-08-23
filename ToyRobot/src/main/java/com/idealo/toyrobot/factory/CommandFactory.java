@@ -5,6 +5,7 @@ import com.idealo.toyrobot.exceptions.InvalidParamException;
 import com.idealo.toyrobot.factory.simulator.Simulator;
 import com.idealo.toyrobot.factory.simulator.types.LeftSimulation;
 import com.idealo.toyrobot.factory.simulator.types.MoveSimulator;
+import com.idealo.toyrobot.factory.simulator.types.ReportSimulator;
 import com.idealo.toyrobot.factory.simulator.types.RightSimulation;
 
 public class CommandFactory {
@@ -20,6 +21,10 @@ public class CommandFactory {
 			break;
 		case MOVE:
 			simulator = new MoveSimulator();
+			break;
+		case REPORT:
+			simulator = new ReportSimulator();
+			break;
 		default:
 			throw new InvalidParamException("Simulator unknown! [Simulator type (" + simulations + ") Unknown]");
 		}
