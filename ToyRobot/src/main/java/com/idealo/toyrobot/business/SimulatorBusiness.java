@@ -18,8 +18,7 @@ public class SimulatorBusiness {
 
 	public RobotSimulationResponseDto simulateRobot(String id, RobotSimulationRequestDto requestDto) {
 		checkCoreRequirements(requestDto);
-		
-		return null;
+		return simulatorService.simulateRobot(id, requestDto);
 	}
 
 	private void checkCoreRequirements(RobotSimulationRequestDto requestDto) {

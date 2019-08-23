@@ -1,6 +1,7 @@
 package com.idealo.toyrobot.service.impl;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import com.example.model.RobotSimulationRequestDto;
 import com.example.model.RobotSimulationResponseDto;
 import com.example.model.Simulations;
 import com.idealo.toyrobot.exceptions.InvalidRequestException;
+import com.idealo.toyrobot.exceptions.RobotNotFoundException;
 import com.idealo.toyrobot.factory.CommandFactory;
 import com.idealo.toyrobot.factory.simulator.Simulator;
 import com.idealo.toyrobot.models.Robot;
@@ -29,7 +31,11 @@ public class SimulatorServiceImpl implements SimulatorService {
 	@Override
 	public RobotSimulationResponseDto simulateRobot(String id, RobotSimulationRequestDto requestDto) {
 		Robot robot = robotRepositoryService.findById(id);
-		simulateRobot(robot, requestDto.getCommandsList());
+		if(!Objects.isNull(robot))
+			simulateRobot(robot, requestDto.getCommandsList());
+		else
+			throw new RobotNotFoundException("\nRobot not found against the given id ["+id+"]");
+		
 		return new RobotSimulationResponseDto().reportList(robot.getToyRobotSimulator().getSimulationReport());
 	}
 
