@@ -2,6 +2,8 @@ package com.idealo.toyrobot.controller.advices;
 
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -21,6 +23,8 @@ import com.idealo.toyrobot.exceptions.RobotNotFoundException;
  */
 @RestControllerAdvice
 public class GeneralExceptionHandler {
+	
+	private static final Logger logger = LoggerFactory.getLogger(GeneralExceptionHandler.class);
 
 	/**
 	 * @param e
@@ -31,6 +35,7 @@ public class GeneralExceptionHandler {
 	public ResponseEntity<Object> handleInvalidRequestException(RuntimeException e, WebRequest wr) {
 		String error = Optional.of(e.getMessage()).orElse(e.getClass().getName())
 				+ "\n[Invalid Request! => (InvalidRequestException)]";
+		logger.error(error, e);
 		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 	}
 
@@ -43,6 +48,7 @@ public class GeneralExceptionHandler {
 	public ResponseEntity<Object> handleInvalidParamException(RuntimeException e, WebRequest wr) {
 		String error = Optional.of(e.getMessage()).orElse(e.getClass().getName())
 				+ "\n[Invalid param! => (InvalidParamException)]";
+		logger.error(error, e);
 		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 	}
 
@@ -55,6 +61,7 @@ public class GeneralExceptionHandler {
 	public ResponseEntity<Object> handleCordsOutOfBoundException(RuntimeException e, WebRequest wr) {
 		String error = Optional.of(e.getMessage()).orElse(e.getClass().getName())
 				+ "\n[coordinates out of bounds! => (CordsOutOfBoundException)]";
+		logger.error(error, e);
 		return new ResponseEntity<>(error, HttpStatus.EXPECTATION_FAILED);
 	}
 
@@ -67,6 +74,7 @@ public class GeneralExceptionHandler {
 	public ResponseEntity<Object> handleRobotNotFoundException(RuntimeException e, WebRequest wr) {
 		String error = Optional.of(e.getMessage()).orElse(e.getClass().getName())
 				+ "\n[Robot not found! => (RobotNotFoundException)]";
+		logger.error(error, e);
 		return new ResponseEntity<>(error, HttpStatus.EXPECTATION_FAILED);
 	}
 
@@ -79,6 +87,7 @@ public class GeneralExceptionHandler {
 	public ResponseEntity<Object> handleEmptyDataSetException(RuntimeException e, WebRequest wr) {
 		String error = Optional.of(e.getMessage()).orElse(e.getClass().getName())
 				+ "\n[Data not found! => (EmptyDataSetException)]";
+		logger.error(error, e);
 		return new ResponseEntity<>(error, HttpStatus.EXPECTATION_FAILED);
 	}
 
