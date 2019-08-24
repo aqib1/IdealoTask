@@ -8,7 +8,7 @@ import com.idealo.toyrobot.models.Robot;
  * @version 1.0
  * @since 8/22/2019
  */
-public class MoveSimulator implements Simulator {
+public class MoveSimulation implements Simulator {
 
 	/**
 	 * @param toyRobot

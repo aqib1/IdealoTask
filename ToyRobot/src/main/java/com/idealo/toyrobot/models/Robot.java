@@ -5,7 +5,6 @@ import java.util.UUID;
 
 import com.idealo.toyrobot.utils.Constants;
 
-
 /**
  * @author Aqib_Javed
  * @version 1.0
@@ -19,7 +18,7 @@ public class Robot {
 	private RobotSimulator toyRobotSimulator;
 
 	public Robot() {
-		this(0,UUID.randomUUID().toString(),Constants.DEFAULT_ROBOT_NAME,LocalDate.now().toString());
+		this(0, UUID.randomUUID().toString(), Constants.DEFAULT_ROBOT_NAME, LocalDate.now().toString());
 	}
 
 	/**
@@ -86,11 +85,18 @@ public class Robot {
 	}
 
 	/**
+	 * @param toyRobotSimulator
+	 */
+	public void setToyRobotSimulator(RobotSimulator toyRobotSimulator) {
+		this.toyRobotSimulator = toyRobotSimulator;
+	}
+
+	/**
 	 * @return
 	 */
 	@Override
 	public String toString() {
 		return "ToyRobot [uuid=" + uuid + ", robotName=" + robotName + ", createdAt=" + createdAt + "]";
 	}
-	
+
 }

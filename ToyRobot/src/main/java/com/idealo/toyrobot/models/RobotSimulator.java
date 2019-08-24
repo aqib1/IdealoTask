@@ -150,4 +150,11 @@ public class RobotSimulator {
 		return xPosition != null && yPosition != null && cardinalDirections != null;
 	}
 
+	@Override
+	public String toString() {
+		return "RobotSimulator [xPosition=" + xPosition + ", yPosition=" + yPosition + ", cardinalDirections="
+				+ cardinalDirections + ", simulationReport=" + simulationReport + ", currentReport=" + currentReport
+				+ "]";
+	}
+
 }

@@ -14,13 +14,12 @@ import com.example.model.RobotRequestDto;
 import com.example.model.RobotResponseDto;
 import com.idealo.toyrobot.exceptions.InvalidRequestException;
 import com.idealo.toyrobot.helper.DataHelper;
-import com.idealo.toyrobot.mappers.RobotDetailsResponseMapper;
 import com.idealo.toyrobot.service.RobotService;
 
 /**
  * @author Aqib_Javed
  * @version 1.0
- * @since 8/20/2019
+ * @since 8/24/2019
  */
 @RunWith(SpringRunner.class)
 @WebMvcTest
@@ -29,18 +28,15 @@ public class RobotBusinessTest {
 	@MockBean
 	private RobotService robotService;
 
-	@MockBean
-	private RobotDetailsResponseMapper robotDetailsResponseMapper;
-
 	@Autowired
 	private RobotBusiness robotBusiness;
 
 	@Before
 	public void init() {
-		mockingBusinessComponents();
+		mockingServiceComponents();
 	}
 
-	private void mockingBusinessComponents() {
+	private void mockingServiceComponents() {
 		Mockito.when(robotService.createToyRobot(Mockito.any(RobotRequestDto.class)))
 				.thenReturn(DataHelper.getResponseDto());
 		Mockito.doNothing().when(robotService).updateRobot(Mockito.anyString(), Mockito.any(RobotRequestDto.class));

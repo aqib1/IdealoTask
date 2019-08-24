@@ -1,4 +1,4 @@
-package com.idealo.toyrobot;
+package com.idealo.toyrobot.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -26,7 +26,7 @@ import com.idealo.toyrobot.utils.URLS;
 /**
  * @author Aqib_Javed
  * @version 1.0
- * @since 8/20/2019
+ * @since 8/24/2019
  */
 
 @RunWith(SpringRunner.class)

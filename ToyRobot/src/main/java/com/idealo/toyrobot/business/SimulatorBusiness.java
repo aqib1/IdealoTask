@@ -50,7 +50,7 @@ public class SimulatorBusiness {
 		if (Objects.isNull(requestDto.getCommandsList())) {
 			throw new InvalidRequestException("Null command list not allowed");
 		}
-		if (Objects.isNull(requestDto.getCommandsList().isEmpty())) {
+		if (requestDto.getCommandsList().isEmpty()) {
 			throw new InvalidRequestException("Empty command list not allowed");
 		}
 	}
