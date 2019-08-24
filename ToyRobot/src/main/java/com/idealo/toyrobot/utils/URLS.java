@@ -17,6 +17,7 @@ public class URLS {
 	public static final String URL_TOY_ROBOT_URL_UPDATE = "/{id}";
 
 	/************* SIMULATOR API *************/
+	public static final String SIMULATOR_URL_BASE_FOR_TEST = "/simulator/";
 	public static final String SIMULATOR_URL_BASE = "/simulator/*";
 	public static final String SIMULATOR_URL_SIMULATE = "/{id}";
 
