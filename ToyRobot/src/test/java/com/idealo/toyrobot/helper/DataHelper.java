@@ -85,7 +85,7 @@ public class DataHelper {
 	 * @return
 	 */
 	public static RobotSimulationRequestDto getRobotSimulationRequestDto() {
-		return new RobotSimulationRequestDto().commandsList(List.of("MOVE,REPORT"));
+		return new RobotSimulationRequestDto().commandsList(List.of("MOVE", "REPORT"));
 	}
 
 	/**
