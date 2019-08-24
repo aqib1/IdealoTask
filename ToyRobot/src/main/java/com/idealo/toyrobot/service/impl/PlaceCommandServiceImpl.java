@@ -1,5 +1,7 @@
 package com.idealo.toyrobot.service.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.example.model.CardinalDirections;
@@ -18,12 +20,15 @@ import com.idealo.toyrobot.utils.Constants;
 @Service
 public class PlaceCommandServiceImpl implements PlaceCommandService {
 
+	private static final Logger logger = LoggerFactory.getLogger(PlaceCommandServiceImpl.class);
+
 	/**
 	 * @param request
 	 * @return
 	 */
 	public Robot IOPlaceCommandExecutor(RobotRequestDto request) {
 		Robot toyRobot = getToyRobotFromRequest(request);
+		logger.info("Robot created from request as ["+toyRobot+"]");
 		String cmmd = request.getPlaceCommand();
 
 		if (!cmmd.matches(Constants.PLACE_COMMAND_REGEX)) {
@@ -52,7 +57,8 @@ public class PlaceCommandServiceImpl implements PlaceCommandService {
 		if (isToyRobotInTableLimit(xValue, yValue)) {
 			toyRobot.getToyRobotSimulator().setxPosition(xValue);
 			toyRobot.getToyRobotSimulator().setyPosition(yValue);
-			toyRobot.getToyRobotSimulator().setCardinalDirections(CardinalDirections.valueOf(cardinalData[2].toUpperCase()));
+			toyRobot.getToyRobotSimulator()
+					.setCardinalDirections(CardinalDirections.valueOf(cardinalData[2].toUpperCase()));
 		} else {
 			throw new CordsOutOfBoundException("\nCoordinates of ToyRobot not exists in the max range table["
 					+ Constants.TABLE_MIN_LIMIT + "," + Constants.TABLE_MAX_LIMIT + "]");

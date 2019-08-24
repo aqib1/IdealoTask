@@ -1,5 +1,8 @@
 package com.idealo.toyrobot.factory;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.example.model.Simulations;
 import com.idealo.toyrobot.exceptions.InvalidParamException;
 import com.idealo.toyrobot.factory.simulator.Simulator;
@@ -14,12 +17,13 @@ import com.idealo.toyrobot.factory.simulator.types.RightSimulation;
  * @since 8/20/2019
  */
 public class CommandFactory {
-
+	private static final Logger logger = LoggerFactory.getLogger(CommandFactory.class);
 	/**
 	 * @param simulations
 	 * @return
 	 */
 	public static Simulator getSimulator(Simulations simulations) {
+		logger.info("Simulations recieved ["+simulations+"]");
 		Simulator simulator = null;
 		switch (simulations) {
 		case LEFT:

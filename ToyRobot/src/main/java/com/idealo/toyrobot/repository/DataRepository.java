@@ -12,6 +12,9 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.idealo.toyrobot.models.Robot;
 
 /**
@@ -27,7 +30,7 @@ import com.idealo.toyrobot.models.Robot;
  *        package
  */
 class DataRepository {
-
+	private static final Logger logger = LoggerFactory.getLogger(DataRepository.class);
 	private ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
 	private Lock readLock = readWriteLock.readLock();
 	private Lock writeLock = readWriteLock.writeLock();
@@ -40,9 +43,11 @@ class DataRepository {
 		List<Robot> robotsList = null;
 		if (robots.isEmpty())
 			return new ArrayList<>();
+		logger.info("Acquiring shared read lock in findAll");
 		readLock.lock();
 		robotsList = robots.entrySet().stream().map(x -> x.getValue()).collect(Collectors.toList());
 		readLock.unlock();
+		logger.info("Unlock shared read lock in findAll");
 		return robotsList;
 	}
 
@@ -52,10 +57,12 @@ class DataRepository {
 	 */
 	public Robot findById(String uuid) {
 		Robot robot = null;
+		logger.info("Acquiring shared read lock in findById");
 		readLock.lock();
 		if (robots.containsKey(uuid))
 			robot = robots.get(uuid);
 		readLock.unlock();
+		logger.info("Unlock shared read lock in findById");
 		return robot;
 	}
 
@@ -65,12 +72,14 @@ class DataRepository {
 	 */
 	public int deleteById(String uuid) {
 		int r = OK;
+		logger.info("Acquiring write lock in deleteById");
 		writeLock.lock();
 		if (robots.containsKey(uuid))
 			robots.remove(uuid);
 		else
 			r = ERROR;
 		writeLock.lock();
+		logger.info("Unlock write lock in deleteById");
 		return r;
 	}
 
@@ -78,6 +87,7 @@ class DataRepository {
 	 * @return
 	 */
 	public int deleteAll() {
+		logger.info("Acquiring write lock in deleteAll");
 		writeLock.lock();
 		try {
 			robots.clear();
@@ -85,6 +95,7 @@ class DataRepository {
 			return ERROR;
 		} finally {
 			writeLock.lock();
+			logger.info("Unlock write lock in deleteAll");
 		}
 		return OK;
 	}
@@ -96,12 +107,14 @@ class DataRepository {
 	 */
 	public int update(String uuid, Robot robot) {
 		int r = ERROR;
+		logger.info("Acquiring write lock in update");
 		writeLock.lock();
 		if (robots.containsKey(uuid)) {
 			robots.put(uuid, robot);
 			r = OK;
 		}
 		writeLock.unlock();
+		logger.info("Unlock write lock in update");
 		return r;
 	}
 
@@ -110,17 +123,19 @@ class DataRepository {
 	 * @return
 	 */
 	public String add(Robot robot) {
+		logger.info("Acquiring write lock in add");
 		writeLock.lock();
 		String uuid = robot.getUuid();
 		robots.put(uuid, robot);
 		writeLock.unlock();
+		logger.info("Unlock write lock in add");
 		return uuid;
 	}
 
 	/**
 	 * @author Aqib_Javed
 	 * @version 1.0
-     * @since 8/22/2019
+	 * @since 8/22/2019
 	 */
 	private static class InstanceHolder {
 		private static final DataRepository INSTANCE = new DataRepository();

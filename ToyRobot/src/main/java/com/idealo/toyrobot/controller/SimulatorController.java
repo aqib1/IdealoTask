@@ -3,6 +3,8 @@ package com.idealo.toyrobot.controller;
 import static com.idealo.toyrobot.utils.URLS.SIMULATOR_URL_BASE;
 import static com.idealo.toyrobot.utils.URLS.SIMULATOR_URL_SIMULATE;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +26,7 @@ import com.idealo.toyrobot.business.SimulatorBusiness;
 @RestController
 @RequestMapping(SIMULATOR_URL_BASE)
 public class SimulatorController {
-
+	private static final Logger logger = LoggerFactory.getLogger(SimulatorController.class);
 	@Autowired
 	private SimulatorBusiness simulatorBusiness;
 
@@ -36,7 +38,9 @@ public class SimulatorController {
 	@RequestMapping(value = SIMULATOR_URL_SIMULATE, method = RequestMethod.POST)
 	public ResponseEntity<RobotSimulationResponseDto> simulateRobot(@PathVariable("id") String id,
 			@RequestBody RobotSimulationRequestDto requestDto) {
-		return ResponseEntity.ok().body(simulatorBusiness.simulateRobot(id, requestDto));
+		RobotSimulationResponseDto response = simulatorBusiness.simulateRobot(id, requestDto);
+		logger.info("Response from simulateRobot recieved [" + response + "]");
+		return ResponseEntity.ok().body(response);
 	}
 
 	/**
@@ -45,7 +49,9 @@ public class SimulatorController {
 	 */
 	@RequestMapping(value = SIMULATOR_URL_SIMULATE, method = RequestMethod.GET)
 	public ResponseEntity<RobotSimulationStackResponseDto> getSimulationsAgainstId(@PathVariable("id") String id) {
-		return ResponseEntity.ok().body(simulatorBusiness.getSimulationsAgainstId(id));
+		RobotSimulationStackResponseDto response = simulatorBusiness.getSimulationsAgainstId(id);
+		logger.info("Response from getSimulationsAgainstId recieved [" + response + "] against id [" + id + "]");
+		return ResponseEntity.ok().body(response);
 	}
 
 }

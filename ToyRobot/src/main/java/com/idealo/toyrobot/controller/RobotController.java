@@ -7,6 +7,8 @@ import static com.idealo.toyrobot.utils.URLS.URL_TOY_ROBOT_URL_UPDATE;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,7 +30,7 @@ import com.idealo.toyrobot.business.RobotBusiness;
 @RestController
 @RequestMapping(TOY_ROBOT_URL_BASE)
 public class RobotController {
-
+	private static final Logger logger = LoggerFactory.getLogger(RobotController.class);
 	@Autowired
 	private RobotBusiness robotBusiness;
 
@@ -39,6 +41,7 @@ public class RobotController {
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<RobotResponseDto> createRobot(@RequestBody RobotRequestDto request) {
 		RobotResponseDto response = robotBusiness.createToyRobot(request);
+		logger.info("Response from createToyRobot recieved [" + response + "]");
 		return ResponseEntity.ok().body(response);
 	}
 
@@ -50,6 +53,7 @@ public class RobotController {
 	@RequestMapping(value = URL_TOY_ROBOT_URL_UPDATE, method = RequestMethod.PUT)
 	public ResponseEntity<?> updateRobot(@PathVariable("id") String id, @RequestBody RobotRequestDto request) {
 		robotBusiness.updateRobot(id, request);
+		logger.info("Request [" + request + "] successfully updated against id[" + id + "]");
 		return ResponseEntity.ok().build();
 	}
 
@@ -59,7 +63,9 @@ public class RobotController {
 	 */
 	@RequestMapping(value = URL_TOY_ROBOT_URL_GET_BY_ID, method = RequestMethod.GET)
 	public ResponseEntity<RobotDetailsResponse> getRobotById(@PathVariable("id") String id) {
-		return ResponseEntity.ok().body(robotBusiness.getRobotById(id));
+		RobotDetailsResponse response = robotBusiness.getRobotById(id);
+		logger.info("Response from getRobotById recieved [" + response + "]");
+		return ResponseEntity.ok().body(response);
 	}
 
 	/**
@@ -69,6 +75,7 @@ public class RobotController {
 	@RequestMapping(value = URL_TOY_ROBOT_URL_DELETE, method = RequestMethod.DELETE)
 	public ResponseEntity<?> deleteRobotById(@PathVariable("id") String id) {
 		robotBusiness.deleteRobotById(id);
+		logger.info("Robot info successfully deleted against id[" + id + "]");
 		return ResponseEntity.ok().build();
 	}
 
@@ -77,6 +84,8 @@ public class RobotController {
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<RobotDetailsResponse>> getAllRobots() {
-		return ResponseEntity.ok().body(robotBusiness.getAllRobots());
+		List<RobotDetailsResponse> response = robotBusiness.getAllRobots();
+		logger.info("Response from getAllRobots recieved [" + response + "]");
+		return ResponseEntity.ok().body(response);
 	}
 }
