@@ -1,5 +1,5 @@
 # IdealoTask
-These are the details regarding tasks. First task will be following below.
+These are the details regarding tasks. I pick the task 3 which is the following below.
 # Task 3
 
 Code problem details:
