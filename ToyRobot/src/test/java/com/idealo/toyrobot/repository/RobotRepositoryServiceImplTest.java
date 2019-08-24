@@ -42,7 +42,6 @@ public class RobotRepositoryServiceImplTest {
 		int result = robotRepositoryService.update(DataHelper.UUID_ROBOT,
 				DataHelper.getRobot(1, 2, CardinalDirections.NORTH));
 		Assert.assertEquals(OK, result);
-		;
 	}
 
 	@Test
