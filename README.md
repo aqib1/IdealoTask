@@ -1,5 +1,5 @@
 # IdealoTask
-These are the details regarding tasks. I pick the task 3 which is the following below. The made project completely dockerize with a public image available on docker hub please use the command docker pull <strong>aqibbutt3078/toyrobot:image</strong> to pull the image, if you like to run it from docker shell.
+These are the details regarding tasks. I pick the task 3 which is the following below. The made project completely dockerize with a public image available on docker hub please use the command <b>docker pull aqibbutt3078/toyrobot:image</b> to pull the image, if you like to run it from docker shell.
 # Task 3
 
 Code problem details:
