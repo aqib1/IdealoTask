@@ -2,6 +2,8 @@ package com.idealo.toyrobot.business;
 
 import java.util.Objects;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +20,9 @@ import com.idealo.toyrobot.service.SimulatorService;
  */
 @Component
 public class SimulatorBusiness {
-
+	
+	private static final Logger logger = LoggerFactory.getLogger(SimulatorBusiness.class);
+	
 	@Autowired
 	private SimulatorService simulatorService;
 
@@ -44,6 +48,7 @@ public class SimulatorBusiness {
 	 * @param requestDto
 	 */
 	private void checkCoreRequirements(RobotSimulationRequestDto requestDto) {
+		logger.info("Checking core requirements against request ["+requestDto+"]");
 		if (Objects.isNull(requestDto)) {
 			throw new InvalidRequestException("Null request not allowed");
 		}
