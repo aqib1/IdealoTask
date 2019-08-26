@@ -4,6 +4,9 @@ import static com.idealo.toyrobot.utils.Constants.ERROR;
 
 import java.util.List;
 import java.util.Objects;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.example.model.RobotDetailsResponse;
@@ -23,6 +26,8 @@ import com.idealo.toyrobot.service.RobotService;
  */
 @Component
 public class RobotBusiness {
+	
+	private static final Logger logger = LoggerFactory.getLogger(RobotBusiness.class);
 
 	@Autowired
 	private RobotService robotService;
@@ -48,7 +53,12 @@ public class RobotBusiness {
 		robotService.updateRobot(id, request);
 	}
 
+	/**
+	 * @param id
+	 * @return
+	 */
 	public RobotDetailsResponse getRobotById(String id) {
+		logger.info("Getting response against id "+ id);
 		Robot robot = robotService.getRobotById(id);
 		if (Objects.isNull(robot)) {
 			throw new RobotNotFoundException("\nRobot again id [" + id + "] not found!");
@@ -60,6 +70,7 @@ public class RobotBusiness {
 	 * @param id
 	 */
 	public void deleteRobotById(String id) {
+		logger.info("deleting response against id "+ id);
 		int r = robotService.deleteRobotById(id);
 		if (r == ERROR)
 			throw new RobotNotFoundException("\nRobot again id [" + id + "] not found!");
@@ -69,6 +80,7 @@ public class RobotBusiness {
 	 * @return
 	 */
 	public List<RobotDetailsResponse> getAllRobots() {
+		logger.info("Getting all robots");
 		List<Robot> robots = robotService.getAllRobots();
 		if (robots.isEmpty())
 			throw new EmptyDataSetException("\nData is empty!! [Please add robots first]");
@@ -79,6 +91,7 @@ public class RobotBusiness {
 	 * @param request
 	 */
 	private void checkCoreRequirements(RobotRequestDto request) {
+		logger.info("Checking core requirements for request ["+request+"]");
 		if (Objects.isNull(request)) {
 			throw new InvalidRequestException("Request is empty or null");
 		}
