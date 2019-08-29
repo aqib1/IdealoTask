@@ -17,7 +17,7 @@ public class RightSimulation implements Simulator {
 	@Override
 	public void execute(Robot toyRobot) {
 		if (!toyRobot.getToyRobotSimulator().isOnTable()) {
-
+				///error
 		} else {
 			rightMovement(toyRobot);
 		}

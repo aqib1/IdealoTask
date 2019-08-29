@@ -78,7 +78,7 @@ class DataRepository {
 			robots.remove(uuid);
 		else
 			r = ERROR;
-		writeLock.lock();
+		writeLock.unlock();
 		logger.info("Unlock write lock in deleteById");
 		return r;
 	}
@@ -94,7 +94,7 @@ class DataRepository {
 		} catch (UnsupportedOperationException e) {
 			return ERROR;
 		} finally {
-			writeLock.lock();
+			writeLock.unlock();
 			logger.info("Unlock write lock in deleteAll");
 		}
 		return OK;
@@ -139,6 +139,10 @@ class DataRepository {
 	 */
 	private static class InstanceHolder {
 		private static final DataRepository INSTANCE = new DataRepository();
+		
+		private InstanceHolder() {
+			
+		}
 	}
 
 	/**

@@ -37,6 +37,7 @@ public class RobotController {
 	/**
 	 * @param request
 	 * @return
+	 * <p></p>
 	 */
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<RobotResponseDto> createRobot(@RequestBody RobotRequestDto request) {
