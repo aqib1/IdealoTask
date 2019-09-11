@@ -32,7 +32,7 @@ public class GeneralExceptionHandler {
 	 * @return
 	 */
 	@ExceptionHandler(value = { InvalidRequestException.class })
-	public ResponseEntity<Object> handleInvalidRequestException(RuntimeException e, WebRequest wr) {
+	public ResponseEntity<String> handleInvalidRequestException(RuntimeException e, WebRequest wr) {
 		String error = Optional.of(e.getMessage()).orElse(e.getClass().getName())
 				+ "\n[Invalid Request! => (InvalidRequestException)]";
 		logger.error(error, e);
@@ -45,7 +45,7 @@ public class GeneralExceptionHandler {
 	 * @return
 	 */
 	@ExceptionHandler(value = { InvalidParamException.class })
-	public ResponseEntity<Object> handleInvalidParamException(RuntimeException e, WebRequest wr) {
+	public ResponseEntity<String> handleInvalidParamException(RuntimeException e, WebRequest wr) {
 		String error = Optional.of(e.getMessage()).orElse(e.getClass().getName())
 				+ "\n[Invalid param! => (InvalidParamException)]";
 		logger.error(error, e);
@@ -58,7 +58,7 @@ public class GeneralExceptionHandler {
 	 * @return
 	 */
 	@ExceptionHandler(value = { CordsOutOfBoundException.class })
-	public ResponseEntity<Object> handleCordsOutOfBoundException(RuntimeException e, WebRequest wr) {
+	public ResponseEntity<String> handleCordsOutOfBoundException(RuntimeException e, WebRequest wr) {
 		String error = Optional.of(e.getMessage()).orElse(e.getClass().getName())
 				+ "\n[coordinates out of bounds! => (CordsOutOfBoundException)]";
 		logger.error(error, e);
@@ -71,7 +71,7 @@ public class GeneralExceptionHandler {
 	 * @return
 	 */
 	@ExceptionHandler(value = { RobotNotFoundException.class })
-	public ResponseEntity<Object> handleRobotNotFoundException(RuntimeException e, WebRequest wr) {
+	public ResponseEntity<String> handleRobotNotFoundException(RuntimeException e, WebRequest wr) {
 		String error = Optional.of(e.getMessage()).orElse(e.getClass().getName())
 				+ "\n[Robot not found! => (RobotNotFoundException)]";
 		logger.error(error, e);
@@ -84,7 +84,7 @@ public class GeneralExceptionHandler {
 	 * @return
 	 */
 	@ExceptionHandler(value = { EmptyDataSetException.class })
-	public ResponseEntity<Object> handleEmptyDataSetException(RuntimeException e, WebRequest wr) {
+	public ResponseEntity<String> handleEmptyDataSetException(RuntimeException e, WebRequest wr) {
 		String error = Optional.of(e.getMessage()).orElse(e.getClass().getName())
 				+ "\n[Data not found! => (EmptyDataSetException)]";
 		logger.error(error, e);
